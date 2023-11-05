@@ -44,7 +44,7 @@ void Stm32Comms::disconnect()
 }
 
 
-void Stm32Comms::send_rad_velo(float velo_l, float velo_r)
+void Stm32Comms::send_rad_velo(double velo_l, double velo_r)
 {
     int count_l,count_r;
     count_l = (int)(velo_l/(2*PI)*this->encoder_counts_pre_round_/this->ticks_pre_sec_);
@@ -67,7 +67,7 @@ void Stm32Comms::send_rad_velo(float velo_l, float velo_r)
 }
 
 
-void Stm32Comms::read_rad_velo_pos(float &velo_l, float &velo_r,float &pos_l, float &pos_r)
+void Stm32Comms::read_rad_velo_pos(double &velo_l, double &velo_r,double &pos_l, double &pos_r)
 {
     int velo_l_raw, velo_r_raw, pos_l_raw, pos_r_raw;
     try
@@ -83,8 +83,8 @@ void Stm32Comms::read_rad_velo_pos(float &velo_l, float &velo_r,float &pos_l, fl
 	    pos_r_raw = input_raw_[11]*10000 + input_raw_[12]*100 + input_raw_[13];
         
         }
-        velo_l = (float)velo_l_raw / this->encoder_counts_pre_round_ *2*PI*this->ticks_pre_sec_;
-        velo_r = (float)velo_r_raw / this->encoder_counts_pre_round_ *2*PI*this->ticks_pre_sec_;
+        velo_l = (double)velo_l_raw / this->encoder_counts_pre_round_ *2*PI*this->ticks_pre_sec_;
+        velo_r = (double)velo_r_raw / this->encoder_counts_pre_round_ *2*PI*this->ticks_pre_sec_;
 
         if (abs(this->pos_l_history_) > this->encoder_counts_pre_round_ || abs(this->pos_r_history_) > this->encoder_counts_pre_round_)
         {
@@ -112,8 +112,8 @@ void Stm32Comms::read_rad_velo_pos(float &velo_l, float &velo_r,float &pos_l, fl
             this->wheel_r_round_num_ -= 1;
         }
 
-        pos_l = ((float)pos_l_raw + (float)this->wheel_l_round_num_*this->encoder_counts_pre_round_) / this->encoder_counts_pre_round_ *2*PI;
-        pos_r = ((float)pos_r_raw + (float)this->wheel_r_round_num_*this->encoder_counts_pre_round_) / this->encoder_counts_pre_round_ *2*PI;
+        pos_l = ((double)pos_l_raw + (double)this->wheel_l_round_num_*this->encoder_counts_pre_round_) / this->encoder_counts_pre_round_ *2*PI;
+        pos_r = ((double)pos_r_raw + (double)this->wheel_r_round_num_*this->encoder_counts_pre_round_) / this->encoder_counts_pre_round_ *2*PI;
 
         this->pos_l_history_ = pos_l_raw;
         this->pos_r_history_ = pos_r_raw;

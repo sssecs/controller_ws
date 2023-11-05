@@ -13,9 +13,9 @@ public:
 
     void disconnect();
 
-    void send_rad_velo(float velo_l, float velo_r);
+    void send_rad_velo(double velo_l, double velo_r);
 
-    void read_rad_velo_pos(float &velo_l, float &velo_r,float &pos_l, float &pos_r);
+    void read_rad_velo_pos(double &velo_l, double &velo_r,double &pos_l, double &pos_r);
 
     
 
@@ -24,8 +24,8 @@ private:
     static const int output_array_length_ = 8;
     static const int input_array_length_ = 24;
 
-    const float encoder_counts_pre_round_ = 60000;
-    const float ticks_pre_sec_ = 100;
+    const double encoder_counts_pre_round_ = 60000;
+    const double ticks_pre_sec_ = 100;
 
 
 

@@ -31,6 +31,15 @@
 
 namespace ros2_control_demo_hardware
 {
+
+struct WheelParam 
+{
+  std::string wheel_joint_name;
+  double velo_act;
+  double pos_act;
+  double velo_cmd;
+};
+
 class DiffBotSystemHardware
 : public hardware_interface::BaseInterface<hardware_interface::SystemInterface>
 {
@@ -59,17 +68,11 @@ public:
   hardware_interface::return_type write() override;
 
 private:
-  // Parameters for the DiffBot simulation
-  double hw_start_sec_;
-  double hw_stop_sec_;
-
-  // Store the command for the simulated robot
-  std::vector<double> hw_commands_;
-  std::vector<double> hw_positions_;
-  std::vector<double> hw_velocities_;
-
-  // Store the wheeled robot position
-  double base_x_, base_y_, base_theta_;
+  Stm32Comms toybox_comms;
+  WheelParam wheel_param_l_, wheel_param_r_;
+  int16_t timeout_ms_;
+  std::string serial_device_;
+  
 };
 
 }  // namespace ros2_control_demo_hardware
