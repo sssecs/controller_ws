@@ -27,6 +27,7 @@
 #include "hardware_interface/types/hardware_interface_status_values.hpp"
 #include "rclcpp/macros.hpp"
 #include "ros2_control_demo_hardware/visibility_control.h"
+#include "ros2_control_demo_hardware/stm32_comms.h"
 
 namespace ros2_control_demo_hardware
 {
