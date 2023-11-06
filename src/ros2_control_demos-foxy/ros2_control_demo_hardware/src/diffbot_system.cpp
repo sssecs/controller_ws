@@ -155,28 +155,17 @@ hardware_interface::return_type DiffBotSystemHardware::stop()
 
 hardware_interface::return_type DiffBotSystemHardware::read()
 {
-  RCLCPP_INFO(rclcpp::get_logger("DiffBotSystemHardware"), "Reading...");
-
   this->toybox_comms.read_rad_velo_pos(this->wheel_param_l_.velo_act,
                                        this->wheel_param_r_.velo_act,
                                        this->wheel_param_l_.pos_act,
                                        this->wheel_param_r_.pos_act);
-
-
-
-  RCLCPP_INFO(
-    rclcpp::get_logger("DiffBotSystemHardware"), "Joints successfully read!");
 
   return hardware_interface::return_type::OK;
 }
 
 hardware_interface::return_type ros2_control_demo_hardware::DiffBotSystemHardware::write()
 {
-  RCLCPP_INFO(rclcpp::get_logger("DiffBotSystemHardware"), "Writing...");
-
   this->toybox_comms.send_rad_velo(this->wheel_param_l_.velo_cmd, this->wheel_param_r_.velo_cmd);
-
-  RCLCPP_INFO(rclcpp::get_logger("DiffBotSystemHardware"), "Joints successfully written!");
 
   return hardware_interface::return_type::OK;
 }
