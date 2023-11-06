@@ -40,6 +40,8 @@ ament_target_dependencies(
   rclcpp
 )
 
+target_link_libraries(ros2_control_demo_hardware serial)
+
 pluginlib_export_plugin_description_file(hardware_interface ros2_control_demo_hardware.xml)
 
 # INSTALL
